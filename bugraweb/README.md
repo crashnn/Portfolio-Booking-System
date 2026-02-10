@@ -1,16 +1,34 @@
-# React + Vite
+# 🎥 Videographer Portfolio & Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Co-authored with AI / Yapay Zeka ile Geliştirildi** 🤖
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<div align="center">
 
-## React Compiler
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Google Calendar](https://img.shields.io/badge/Google_Calendar_API-4285F4?style=for-the-badge&logo=google-calendar&logoColor=white)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+## ⚡ Features / Özellikler
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| 🇬🇧 English | 🇹🇷 Türkçe |
+| :--- | :--- |
+| **🎬 Cinematic Portfolio**<br>Mobile-first video & image gallery with detailed views. | **🎬 Sinematik Portfolyo**<br>Video ve görseller için mobil öncelikli detaylı galeri. |
+| **📅 Smart Booking**<br>Real-time availability check via Google Calendar API. | **📅 Akıllı Rezervasyon**<br>Google Takvim API ile gerçek zamanlı müsaitlik kontrolü. |
+| **🔒 Secure Admin Panel**<br>JWT-based authentication to manage projects & FAQs. | **🔒 Güvenli Admin Paneli**<br>Projeleri ve S.S.S'leri yönetmek için JWT tabanlı giriş. |
+| **📱 Fully Responsive**<br>Optimized for Mobile, Tablet, and Desktop. | **📱 Tam Mobil Uyum**<br>Mobil, Tablet ve Masaüstü için optimize edildi. |
+| **📦 Service Packages**<br>Dynamic pricing and service offering display. | **📦 Hizmet Paketleri**<br>Dinamik fiyatlandırma ve hizmet gösterimi. |
+
+---
+
+## 🛠️ Setup & Installation / Kurulum
+
+### 1. Clone the Repository / Projeyi Klonlayın
+```bash
+git clone [https://github.com/your-username/project-name.git](https://github.com/your-username/project-name.git)
+cd project-name
