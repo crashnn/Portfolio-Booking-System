@@ -9,14 +9,39 @@ const Portfolio = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fallback mock projects
+  const mockProjects = [
+    { 
+      _id: '1', 
+      title: "Ticari Reklam", 
+      category: "Advertising", 
+      date: "2025", 
+      thumbnail: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000" 
+    },
+    { 
+      _id: '2', 
+      title: "Sosyal Medya Serisi", 
+      category: "Social", 
+      date: "2025", 
+      thumbnail: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000" 
+    }
+  ];
+
   useEffect(() => {
     fetch(`${API_URL}/api/projects`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API responded with error');
+        return res.json();
+      })
       .then(data => {
-        setProjects(data);
+        setProjects(Array.isArray(data) && data.length > 0 ? data : mockProjects);
         setLoading(false);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.warn("Projects API failed, using mock data:", err);
+        setProjects(mockProjects);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) return (
