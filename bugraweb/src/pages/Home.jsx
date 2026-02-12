@@ -9,11 +9,24 @@ const Home = () => {
   const [faqs, setFaqs] = useState([]); 
   const [activeFaq, setActiveFaq] = useState(null);
 
+  // Fallback mock FAQs for when API is not available
+  const mockFaqs = [
+    { _id: '1', question: "Video prodüksiyonu ne kadar sürer?", answer: "Proje kapsamına göre değişir. Basit editler 2-3 gün, kompleks çalışmalar 1-2 hafta alabilir." },
+    { _id: '2', question: "Fiyatlandırma nasıl hesaplanır?", answer: "Paket seçimine, çekim saati ve revizyon sayısına göre ayarlanır. Detaylar için bizimle iletişime geçin." },
+    { _id: '3', question: "Düzeltme ve revizyon hakkı var mı?", answer: "Evet, tüm paketlerde belirli sayıda revizyon hakkı bulunmaktadır." }
+  ];
+
   useEffect(() => {
     fetch(`${API_URL}/api/faqs`)
-      .then(res => res.json())
-      .then(data => setFaqs(data))
-      .catch(err => console.error("FAQ Hatası:", err));
+      .then(res => {
+        if (!res.ok) throw new Error('API responded with error');
+        return res.json();
+      })
+      .then(data => setFaqs(Array.isArray(data) && data.length > 0 ? data : mockFaqs))
+      .catch(err => {
+        console.warn("FAQ API failed, using mock data:", err);
+        setFaqs(mockFaqs);
+      });
   }, []);
 
   const handleScrollDown = () => {

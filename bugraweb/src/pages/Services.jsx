@@ -9,14 +9,28 @@ const Services = () => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fallback mock packages for when API is not available
+  const mockPackages = [
+    { _id: '1', title: "Başlangıç", price: "7.500 ₺", description: "Giriş seviyesi.", features: ["Özellik 1", "Hızlı Kurgu"], isPopular: false },
+    { _id: '2', title: "Profesyonel", price: "15.000 ₺", description: "İleri seviye.", features: ["Özellik 1", "Özellik 2", "Color Grading", "Özel Müzik"], isPopular: true },
+    { _id: '3', title: "Premium", price: "25.000 ₺", description: "Her şey dahil.", features: ["Hepsi", "VFX Effects", "4K Render", "Sınırsız Revizyon"], isPopular: false }
+  ];
+
   useEffect(() => {
     fetch(`${API_URL}/api/packages`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API responded with error');
+        return res.json();
+      })
       .then(data => {
-        setPackages(data);
+        setPackages(Array.isArray(data) && data.length > 0 ? data : mockPackages);
         setLoading(false);
       })
-      .catch(err => console.error("Paketler yüklenemedi:", err));
+      .catch(err => {
+        console.warn("Packages API failed, using mock data:", err);
+        setPackages(mockPackages);
+        setLoading(false);
+      });
   }, []);
 
 

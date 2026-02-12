@@ -41,12 +41,34 @@ const ProjectDetail = () => {
     const [project, setProject] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // Fallback mock project
+    const mockProject = {
+        _id: '1',
+        title: "Örnek Proje",
+        category: "Production",
+        date: "2025",
+        client: "Demo Client",
+        thumbnail: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000",
+        description: "Bu bir demo projedir. Backend'i bağladıktan sonra gerçek projeler görünecektir.",
+        content: []
+    };
+
     useEffect(() => {
         window.scrollTo(0, 0);
         fetch(`${API_URL}/api/projects/${id}`)
-            .then(res => res.json())
-            .then(data => { setProject(data); setLoading(false); })
-            .catch(err => console.error(err));
+            .then(res => {
+                if (!res.ok) throw new Error('API responded with error');
+                return res.json();
+            })
+            .then(data => { 
+                setProject(data); 
+                setLoading(false); 
+            })
+            .catch(err => {
+                console.warn("Project API failed, using mock data:", err);
+                setProject(mockProject);
+                setLoading(false);
+            });
     }, [id]);
 
         if (loading) return <div className="min-h-screen flex items-center justify-center">
