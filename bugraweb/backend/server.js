@@ -210,7 +210,17 @@ app.post('/api/bookings', async (req, res) => {
 
 
 // --- SUNUCUYU BAŞLAT ---
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
+// Serve frontend build in production (if you build frontend into ../dist)
+if (process.env.NODE_ENV === 'production') {
+  const distPath = path.join(__dirname, '..', 'dist');
+  app.use(express.static(distPath));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
+
 app.listen(PORT, () => {
   console.log(`🚀 Sunucu ${PORT} portunda çalışıyor...`);
 });
